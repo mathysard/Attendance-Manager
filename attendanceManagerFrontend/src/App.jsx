@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/create_instructor" element={<CreateInstructor />} />
+        <Route path="/instructor/create" element={<CreateInstructor />} />
         <Route path="/attendance" element={<Attendance />} />
       </Routes>
     </Router>

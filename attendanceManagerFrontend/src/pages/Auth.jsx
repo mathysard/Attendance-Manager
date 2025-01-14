@@ -15,7 +15,12 @@ function Auth() {
                 console.error("The account was not retrieved successfully.");
             }
         })
-    } 
+    }
+
+    if(localStorage.getItem('isAdmin') !== null) {
+        window.location.assign('/attendance');
+    }
+
   return (
     <>
         <div className="mt-32">

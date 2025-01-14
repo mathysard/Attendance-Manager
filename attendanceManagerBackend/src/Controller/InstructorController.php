@@ -44,21 +44,17 @@ class InstructorController extends AbstractController
     #[Route('/create', name: 'instructor_create', methods: ['GET', 'POST'])]
     public function create()
     {
-        $crits = $this->request->request->all();
+        $crits = $this->request->query->all();
 
         $instructor = new Instructor();
 
-        $instructor->setFirstName($crits['first_name']);
-        $instructor->setLastName($crits['last_name']);
+        $instructor->setFirstName($crits['firstName']);
+        $instructor->setLastName($crits['lastName']);
         $instructor->setEmail($crits['email']);
         $instructor->setPassword(password_hash($crits['password'], PASSWORD_DEFAULT));
 
-        if($this->loginController->isAdmin()) {
-            $this->entityManager->persist($instructor);
-            $this->entityManager->flush();
-        } else {
-            throw new Error("You do not have the permission to create the instructor " . $id . ".");
-        }
+        $this->entityManager->persist($instructor);
+        $this->entityManager->flush();
 
         return new JsonResponse([
             'message' => 'Instructor created successfully.',
